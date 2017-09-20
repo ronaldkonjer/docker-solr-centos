@@ -17,7 +17,7 @@ fi
 
 source "$TEST_DIR/../shared.sh"
 
-echo "Test $tag"
+echo "Test $TEST_DIR $tag"
 container_name='test_'$(echo "$tag" | tr ':/-' '_')
 echo "Cleaning up left-over containers from previous runs"
 container_cleanup "$container_name"
@@ -56,4 +56,4 @@ if [[ $changelog_version != $solr_version_from_tag ]]; then
   exit 1
 fi
 
-echo "Test $BASH_SOURCE $tag succeeded"
+echo "Test $TEST_DIR $tag succeeded"

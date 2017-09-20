@@ -17,7 +17,7 @@ fi
 
 source "$TEST_DIR/../shared.sh"
 
-echo "Test $tag"
+echo "Test $TEST_DIR $tag"
 container_name='test_'$(echo "$tag" | tr ':/-' '_')
 echo "Cleaning up left-over containers from previous runs"
 container_cleanup "$container_name"
@@ -29,9 +29,9 @@ wait_for_server_started "$container_name"
 echo "Checking data"
 data=$(docker exec --user=solr "$container_name" wget -q -O - 'http://localhost:8983/solr/demo/select?q=address_s%3ARound Rock')
 if ! egrep -q 'One Dell Way Round Rock, Texas 78682' <<<$data; then
-  echo "Test test_simple $tag failed; data did not load"
+  echo "Test $TEST_DIR $tag failed; data did not load"
   exit 1
 fi
 container_cleanup "$container_name"
 
-echo "Test $BASH_SOURCE $tag succeeded"
+echo "Test $TEST_DIR $tag succeeded"

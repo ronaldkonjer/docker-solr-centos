@@ -19,6 +19,6 @@ fi
 
 . /opt/docker-solr/scripts/run-initdb
 
-/opt/docker-solr/scripts/solr-precreate "$@"
+/opt/docker-solr/scripts/precreate-core "$@"
 
 exec solr -f

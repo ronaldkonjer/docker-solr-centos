@@ -21,15 +21,24 @@ echo "Test $TEST_DIR $tag"
 container_name='test_'$(echo "$tag" | tr ':/-' '_')
 echo "Cleaning up left-over containers from previous runs"
 container_cleanup "$container_name"
+container_cleanup "$container_name-copier"
 
 # create a core by hand:
-rm -fr myconf
-mkdir myconf
-docker run \
-  -v "$PWD/myconf:/myconf" \
-  --user "$(id -u):$(id -g)" \
-  --rm "$tag" bash -c 'cp -r /opt/solr/server/solr/configsets/data_driven_schema_configs/conf/* /myconf/'
-
+rm -fr myconf configsets
+docker create --name "$container_name-copier" "$tag"
+docker cp "$container_name-copier:/opt/solr/server/solr/configsets" configsets
+docker rm "$container_name-copier"
+for d in data_driven_schema_configs _default; do
+  if [ -d configsets/$d ]; then
+    cp -r configsets/$d/conf myconf
+    break
+  fi
+done
+rm -fr configsets
+if [ ! -d myconf ]; then
+  echo "Could not get config"
+  exit 1
+fi
 if [ ! -f myconf/solrconfig.xml ]; then
   find myconf
   echo "ERROR: no solrconfig.xml"

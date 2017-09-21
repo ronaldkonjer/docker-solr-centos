@@ -2,7 +2,7 @@
 #
 set -euo pipefail
 
-TEST_DIR="$(dirname -- "${BASH_SOURCE-$0}")"
+TEST_DIR="$(dirname -- $(readlink -f "${BASH_SOURCE-$0}"))"
 
 if (( $# == 0 )); then
   echo "Usage: $BASH_SOURCE tag"
@@ -22,7 +22,7 @@ container_name='test_'$(echo "$tag" | tr ':/-' '_')
 echo "Cleaning up left-over containers from previous runs"
 container_cleanup "$container_name"
 echo "Running $container_name"
-docker run --name "$container_name" -d "$tag" solr-precreate gettingstarted
+docker run --name "$container_name" -d -e VERBOSE=yes "$tag" solr-precreate gettingstarted
 
 wait_for_server_started "$container_name"
 

@@ -1,7 +1,7 @@
 
 ARG   CENTOS_PARENT_IMAGE=centos:7
 FROM  centos:7
-LABEL maintainer="Martijn Koster <mak-docker@greenhills.co.uk>"
+LABEL maintainer="Torsten Bøgh Köster <torsten.koester@s24.com>"
 
 # there is no ready made jdk centos image, so we install java ourselves
 ENV JAVA_HOME="/etc/alternatives/jre" \

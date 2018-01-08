@@ -15,7 +15,7 @@ function check_master {
     for e in TRAVIS_BRANCH TRAVIS_COMMIT TRAVIS_PULL_REQUEST TRAVIS_PULL_REQUEST_BRANCH TRAVIS_PULL_REQUEST_SHA TRAVIS_REPO_SLUG; do
       eval "echo $e=\${$e}"
     done
-    if [[ $TRAVIS_REPO_SLUG != 'shopping24/docker-solr-centos' ]]; then
+    if ! egrep -q '^shopping24/docker-solr(-centos)?$' <<<$TRAVIS_REPO_SLUG; then
       echo "Not pushing because this is not the shopping24/docker-solr-centos repo"
       exit 0
     fi

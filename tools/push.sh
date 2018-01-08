@@ -41,7 +41,7 @@ function push {
   # It should really have been "docker-solr" for consistency with the organisation
   # on github but currently dashes are not allowed, see https://github.com/docker/hub-feedback/issues/373
   # The hub user is "dockersolrbuilder".
-  if ! egrep -q '^shopping24/docker-solr-centos:' <<<$tag; then
+  if ! egrep -q '^shopping24/docker-solr(-centos)?:' <<<$tag; then
    tag="shopping24/docker-solr-centos:$tag"
   fi
   #push_tag=$(sed 's,^docker-solr/,dockersolr/,' <<<$tag)

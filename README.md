@@ -12,7 +12,7 @@ $ docker run -d -p 8983:8983 -t shopping24/docker-solr-centos:latest
 
 ## Supported tags and `Dockerfile` links
 
-- [`7.2.0`, `7.2`, `7`, `latest` (*7.2/centos/Dockerfile*)](https://github.com/shopping24/docker-solr-centos/blob/master/7.2/centos/Dockerfile)
+- [`7.2.1`, `7.2`, `7`, `latest` (*7.2/centos/Dockerfile*)](https://github.com/shopping24/docker-solr-centos/blob/master/7.2/centos/Dockerfile)
 - [`7.1.0`, `7.1` (*7.1/slim/Dockerfile*)](https://github.com/docker-solr/shopping24/blob/master/7.1/slim/Dockerfile)
 - [`6.6.2`, `6.6`, `6` (*6.6/slim/Dockerfile*)](https://github.com/shopping24/docker-solr/blob/master/6.6/slim/Dockerfile)
 - [`5.5.5`, `5.5`, `5` (*5.5/slim/Dockerfile*)](https://github.com/shopping24/docker-solr/blob/master/5.5/slim/Dockerfile)
